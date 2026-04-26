@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: #040a18;
+    font-family: 'DM Sans', sans-serif;
+    color: #dde4f2;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: #070f22; }
+  ::-webkit-scrollbar-thumb { background: rgba(232,184,75,0.3); border-radius: 99px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(232,184,75,0.6); }
+  ::selection { background: rgba(232,184,75,0.25); color: #ffd87a; }
+}
+
+@layer components {
+  .glass {
+    @apply bg-card/80 backdrop-blur-xl border border-white/[0.07];
+  }
+  .glass-sm {
+    @apply bg-surface/60 backdrop-blur-md border border-white/[0.06];
+  }
+  .btn-gold {
+    @apply bg-grad-gold text-bg font-display font-700 px-6 py-2.5 rounded-lg
+           hover:opacity-90 active:scale-95 transition-all duration-150
+           shadow-glow;
+  }
+  .btn-ghost {
+    @apply border border-white/10 text-muted hover:text-white hover:border-white/20
+           px-4 py-2 rounded-lg transition-all duration-150;
+  }
+  .input-field {
+    @apply w-full bg-surface/50 border border-white/10 rounded-xl px-4 py-3
+           text-white placeholder-muted text-sm
+           focus:outline-none focus:border-gold/40 focus:ring-2 focus:ring-gold/10
+           transition-all duration-200;
+  }
+  .stat-card {
+    @apply glass rounded-2xl p-5 flex flex-col gap-1;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-mono font-medium;
+  }
+}
+
+/* Noise overlay for depth */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Tour iframe */
+.tour-frame { width: 100%; height: 100%; border: none; border-radius: 0; }
